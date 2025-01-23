@@ -1,0 +1,4 @@
+<button [id]="name" (click)="onClick($event)">Click me!</button> <!-- [] for property binding -->
+<button id="name">Click me!</button> <!-- id is HTML attribute -->
+<button id="{{ name }}">Click me!</button> <!-- Interpolation -->
+<!-- <button [id]="{{name}}">Click me!</button>  --> <!---- Wr can not use interpolation in property binding --- -->

@@ -1,0 +1,191 @@
+<div class="container">
+  <h2>Form Validation</h2>
+  <hr />
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <div class="form-group">
+      <label for="name" class="fw-bold">Name</label>
+      <input
+        type="text"
+        [ngClass]="{ 'is-invalid': name.invalid && name.touched }"
+        class="form-control"
+        id="name"
+        #name="ngModel"
+        name="name"
+        [(ngModel)]="user.name"
+        minlength="3"
+        maxlength="10"
+        required
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="(name.invalid && name.touched) || (f.submitted && name.invalid)"
+      >
+        <div *ngIf="name.errors?.['required']">Name is required</div>
+        <div *ngIf="name.errors?.['minlength']">Minimum Length Should Be 3</div>
+        <div *ngIf="name.errors?.['maxlength']">
+          Maximum Length Should Be 10
+        </div>
+      </div>
+
+      valid : {{ name.valid }}
+      <!--in valid if we enter data in field in becomes true-->
+      <br />
+      invalid: {{ name.invalid }}
+      <!--in invalid if we not enter data in field in becomes true-->
+      <br />
+      touched: {{ name.touched }}
+      <!--in touched if we click on field in becomes true-->
+      <br />
+      untouched: {{ name.untouched }}
+      <!--in untouched if we not click on field in becomes true-->
+      <br />
+      dirty: {{ name.dirty }}
+      <!--in dirty if we change data of field in becomes true-->
+      <br />
+      pristine: {{ name.pristine }}
+      <!--in pristine if we not change data of field in becomes true-->
+    </div>
+    <div class="form-group">
+      <label for="email" class="fw-bold">Email</label>
+      <input
+        type="email"
+        #email="ngModel"
+        [ngClass]="{ 'is-invalid': email.invalid && email.touched }"
+        class="form-control"
+        id="email"
+        name="email"
+        [(ngModel)]="user.email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+        required
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          (email.invalid && email.touched) || (f.submitted && email.invalid)
+        "
+      >
+        <div *ngIf="email.errors?.['required']">Email is required</div>
+        <div *ngIf="email.errors?.['email']">Email is invalid</div>
+
+        <div *ngIf="email.errors?.['pattern']">Email is invalid</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="fw-bold">Password</label>
+      <div class="input-group">
+        <input
+          type="{{ passwordFieldType }}"
+          class="form-control"
+          #password="ngModel"
+          [ngClass]="{ 'is-invalid': password.touched && password.invalid }"
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+          minlength="8"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          required
+        />
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="togglePasswordVisibility()"
+        >
+          {{ passwordFieldType === "password" ? "Show" : "Hide" }}
+        </button>
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          (password.invalid && password.touched) ||
+          (f.submitted && password.invalid)
+        "
+      >
+        <div *ngIf="password.errors?.['required']">Password is required</div>
+        <div *ngIf="password.errors?.['minlength']">
+          Password must be at least 8 characters long.
+        </div>
+        <div *ngIf="password.errors?.['pattern']">
+          Your password must contain at least one uppercase, one lowercase, and
+          one number.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="gender" class="fw-bold">Select Gender</label>
+      <select
+        name="gender"
+        id="gender"
+        #gender="ngModel"
+        required
+        [(ngModel)]="user.gender"
+        class="form-select w-auto"
+      >
+        <option value="" selected disabled>Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+    <div class="alert-danger alert" *ngIf="gender.invalid && f.submitted">
+      <div *ngIf="gender.errors?.['required']">Gender is required</div>
+    </div>
+    <div class="form-group">
+      <label for="dob" class="fw-bold">Date of Birth</label>
+      <input
+        type="date"
+        class="form-control"
+        #dob="ngModel"
+        name="dob"
+        [(ngModel)]="user.dob"
+        required
+      />
+      <div
+        class="alert-danger alert"
+        *ngIf="(dob.invalid && dob.dirty) || (f.submitted && dob.invalid)"
+      >
+        <div *ngIf="dob.errors?.['required']">Date of Birth is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="hobbies" class="fw-bold">Select Hobbies</label><br />
+      <div
+        class="form-check"
+        *ngFor="let hobby of ['Reading', 'Traveling', 'Cooking', 'Sports']"
+      >
+        <input
+          type="checkbox"
+          class="form-check-input"
+          [value]="hobby"
+          id="{{ hobby }}"
+          name="hobbies"
+          ngModel
+          (change)="onHobbiesChange($event)"
+          required
+        />
+        <label class="form-check-label" [for]="hobby">{{ hobby }}</label>
+      </div>
+      <div class="alert-danger alert" *ngIf="f.submitted && hobbies.length === 0">
+        <div>Please select at least one hobby</div>
+      </div>
+      <div class="form-check"></div>
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="terms"
+        name="terms"
+        [(ngModel)]="checked"
+        #terms="ngModel"
+        required
+      />
+      <label class="form-check-label" for="terms"
+        >Accept terms and conditions</label
+      >
+    </div>
+
+    <div class="alert-danger" *ngIf="terms.invalid && f.submitted">
+      <div *ngIf="terms.errors?.['required']" class="text-danger">
+        You must accept the terms
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

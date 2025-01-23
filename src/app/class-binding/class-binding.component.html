@@ -1,0 +1,41 @@
+<p class="text size">Avit Shah !!!</p>
+<!-- simple  class shorthand (Attribute) -->
+<p [class]="'text size'">Hello World !!!</p>
+<!--  class binding -->
+<p class="'text'" [className]="'size'">Hello World !!!</p>
+<!--  Priority Higher in ClassName Propertiy -->
+<button (click)="omClick()">Click Me</button>
+<p [className]="clicked">Hello World !!!</p>
+<!-- conditional class binding -->
+<p [className]="isClicked ? 'text' : 'size'">Hello There !!!</p>
+<!-- conditional class binding using object -->
+<p [ngClass]="isClicked ? 'text size' : 'size'">Wellcome !!!</p>
+<!-- conditional class binding using inBuilt Class Angular Class -->
+<p [class.text]="!isClicked" [class.size]="isClicked">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae porro
+  consectetur aliquam dolor, nobis ea ipsa voluptates, eligendi in fugit vitae
+  aliquid, facere ex ullam? Repudiandae reiciendis repellat numquam pariatur.
+</p>
+<!-- conditional class binding using inBuilt Class Angular Class -->
+<p [ngClass]="['text', 'size']">This Is Writing</p>
+<!-- <form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Favorite food</mat-label>
+    <input matInput placeholder="Ex. Pizza" value="Sushi" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Leave a comment</mat-label>
+    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+</form> -->
+<!-- <mat-slider min="200" max="500">
+  <input value="300" matSliderStartThumb />
+  <input value="400" matSliderEndThumb />
+</mat-slider> -->
+
+<p [ngClass]="getcolor.getColor(false)">Hellowwww</p>
+<p ngClass="text">Hellowwww</p>
+<p ngClass='getcolor.getColor(false)'>Hellowwww</p> <!-- This Will Not Work-->
+
+

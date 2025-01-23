@@ -1,0 +1,16 @@
+<h2 [style]="'backgroundColor : red;'">Hello</h2>
+<h2 style="color: red">Hello</h2>
+<h2 [style]="color">Hello</h2>
+<h2 [style]="'backgroundColor : red; color: white'">Hello</h2>
+<h2 [style.backgroundColor]="'red'">Hello</h2>
+<h2
+  [style]="{
+    'backgroundColor': 'red',
+    'color': 'white'
+  }"
+>Hello</h2>
+// use if ngstyle
+<h2 [ngStyle]="{
+    'backgroundColor': 'red',
+    'color': 'white'
+}">Hello</h2>

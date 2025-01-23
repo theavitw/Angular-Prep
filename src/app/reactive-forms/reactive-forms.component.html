@@ -1,0 +1,169 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center vh-100">
+    <div class="col-md-6">
+      <div class="text-center bg-body-secondary">
+        <h2>Reactive Forms!</h2>
+      </div>
+      <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+        <div class="form-group">
+          <label for="name" class="fw-bold">Name</label>
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            id="name"
+            required
+          />
+          <div
+            *ngIf="userForm.get('name')?.invalid && submitted"
+            class="alert alert-danger"
+          >
+            <div *ngIf="userForm.get('name')?.errors?.['required']">
+              Name is required
+            </div>
+            <div *ngIf="userForm.get('name')?.errors?.['minlength']">
+              Minimum Length Should Be 3
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="fw-bold">Email</label>
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="email"
+            required
+          />
+          <div
+            *ngIf="userForm.get('email')?.invalid && submitted"
+            class="alert alert-danger"
+          >
+            <div *ngIf="userForm.get('email')?.errors?.['required']">
+              Email is required
+            </div>
+            <div *ngIf="userForm.get('email')?.errors?.['email']">
+              Email is not valid
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="fw-bold">Password</label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            id="password"
+            required
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+          />
+          <div
+            *ngIf="userForm.get('password')?.invalid && submitted"
+            class="alert alert-danger"
+          >
+            <div *ngIf="userForm.get('password')?.errors?.['required']">
+              Password is required
+            </div>
+            <div *ngIf="userForm.get('password')?.errors?.['minlength']">
+              Minimum Length Should Be 8
+            </div>
+            <div *ngIf="userForm.get('password')?.errors?.['pattern']">
+              Password must contain at least one uppercase letter, one lowercase
+              letter, one digit, and one special character.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="gender" class="fw-bold">Gender</label>
+          <br />
+          <div class="form-check">
+            <input
+              type="radio"
+              value="male"
+              formControlName="gender"
+              class="form-check-input"
+              id="male"
+              required
+            />
+            <label for="male" class="form-check-label">Male</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="radio"
+              value="female"
+              formControlName="gender"
+              class="form-check-input"
+              id="female"
+              required
+            />
+            <label for="female" class="form-check-label">Female</label>
+          </div>
+          <div
+            *ngIf="userForm.get('gender')?.invalid && submitted"
+            class="alert alert-danger"
+          >
+            Gender is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="hoobies" class="fw-bold">Hobbies</label>
+          <br />
+          <div class="form-check">
+            <input
+              type="checkbox"
+              value="cricket"
+              (change)="onCheckboxChange($event)"
+              class="form-check-input"
+              id="cricket"
+            />
+            <label for="cricket" class="form-check-label">Cricket</label>
+          </div>
+          <div class="form-check">
+            <input
+              type="checkbox"
+              value="music"
+              (change)="onCheckboxChange($event)"
+              class="form-check-input"
+              id="music"
+            />
+            <label for="music" class="form-check-label">Music</label>
+          </div>
+          <div
+            *ngIf="
+              userForm.get('hoobies')?.errors && userForm.get('hoobies')?.dirty
+            "
+            class="alert alert-danger"
+          >
+            Hobbies are required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="terms" class="fw-bold">Terms</label>
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              (change)="onTermsChange($event)"
+              id="terms"
+              name="terms"
+              required
+            />
+            <label for="terms" class="form-check-label">Accept Terms</label>
+          </div>
+          <div *ngIf="!terms && submitted" class="alert alert-danger">
+            Terms are required
+          </div>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div
+  class="example-button-container flex"
+  [style]="
+    'display: flex; justify-content: center;gap: 10px; align-items: center ; height: 100%'
+  "
+>
+  <button
+    mat-fab
+    aria-label="Example icon button with a delete icon"
+    (click)="increment()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <h1>{{ counter }}</h1>
+  <div class="example-button-container">
+    <button
+      mat-fab
+      aria-label="Example icon button with a delete icon"
+      (click)="decrement()"
+    >
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div>
+</div>

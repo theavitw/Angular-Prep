@@ -1,0 +1,51 @@
+<!-- <input type="text" #nameBox placeholder="Enter your name" name="Avit" />
+<button (click)="onSubmit(nameBox)">Submit</button>
+<h1>{{ name || "Avit"}}</h1> -->
+
+<!-- Create From-->
+
+<form
+  (submit)="
+    onSubmit({
+      name: nameBox.value,
+      email: emailBox.value,
+      password: passwordBox.value,
+      confirmPassword: confirmPasswordBox.value
+    })
+  "
+>
+  <input type="text" #nameBox placeholder="Enter your name" name="name" />
+  <input type="text" #emailBox placeholder="Enter your email" name="email" />
+  <input
+    type="text"
+    #passwordBox
+    placeholder="Enter your password"
+    name="email"
+  />
+  <input
+    type="text"
+    #confirmPasswordBox
+    placeholder="Enter your confirm password"
+    name="password"
+  />
+  <input type="submit" value="Submit" />
+</form>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>{{name.name}} </td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td>{{ name.email }}</td>
+  </tr>
+  <tr>
+    <td>Password</td>
+    <td>{{ name.password }}</td>
+  </tr>
+  <tr>
+    <td>Confirm Password</td>
+    <td>{{ name.confirmPassword }}</td>
+  </tr>
+</table>
