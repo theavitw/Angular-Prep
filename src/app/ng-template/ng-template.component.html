@@ -1,0 +1,78 @@
+<p>ng-template works!</p>
+<ng-template [ngIf]="myVar">
+  <h4>This Is Myvar {{ myVar }}</h4>
+</ng-template>
+
+<ng-template [ngIf]="!myVar">
+  <h4>This Is Not Myvar {{ myVar }}</h4>
+</ng-template>
+
+<div *ngIf="myVar; else elseBlock">
+  <h4>This Is IF block</h4>
+</div>
+
+<ng-template #elseBlock>
+  <h4>This Is Else block</h4>
+</ng-template>
+
+<h2 class="text-center text-bg-warning">ng template with if else div</h2>
+<div *ngFor="let i of [1, 2, 3, 4, 5]; let index = index">
+  <div *ngIf="i % 2 == 0; else elseBlock">
+    <h4>Even {{ i }}</h4>
+  </div>
+
+  <ng-template #elseBlock>
+    <h4>Odd {{ i }}</h4>
+  </ng-template>
+</div>
+
+<h2 class="text-center text-bg-warning">ng template with ng for</h2>
+<ng-template ngFor let-emp i="index" [ngForOf]="studentList">
+  <h4>StudentId : {{ emp.id }}</h4>
+  <h4>StudentName : {{ emp.name }}</h4>
+  <h4>StudentAge : {{ emp.age + " years" }}</h4>
+</ng-template>
+
+
+
+<h2 class="text-center text-bg-warning">ng template with if else then</h2>
+<div *ngIf="studentList.length > 0; then thenBlock; else elseBlock"></div>
+
+<ng-template #thenBlock>
+  <ng-template ngFor let-emp i="index" [ngForOf]="studentList">
+    <h4>StudentId : {{ emp.id }}</h4>
+    <h4>StudentName : {{ emp.name }}</h4>
+    <h4>StudentAge : {{ emp.age + " years" }}</h4>
+  </ng-template>
+</ng-template>
+
+<ng-template #elseBlock>
+  <h4>No Data Found</h4>
+</ng-template>
+
+<h2 class="text-center text-bg-warning">ng template with ng switch</h2>
+
+<div [ngSwitch]="studentList.length">
+  <div *ngSwitchCase="0">No Data Found</div>
+  <div *ngSwitchCase="1">
+    <ng-template ngFor let-emp i="index" [ngForOf]="studentList">
+      <h4>StudentId : {{ emp.id }}</h4>
+      <h4>StudentName : {{ emp.name }}</h4>
+      <h4>StudentAge : {{ emp.age + " years" }}</h4>
+    </ng-template>
+  </div>
+  <div *ngSwitchCase="2">
+    <ng-template ngFor let-emp i="index" [ngForOf]="studentList">
+      <h4>StudentId : {{ emp.id }}</h4>
+      <h4>StudentName : {{ emp.name }}</h4>
+      <h4>StudentAge : {{ emp.age + " years" }}</h4>
+    </ng-template>
+  </div>
+  <div *ngSwitchDefault>
+    <ng-template ngFor let-emp i="index" [ngForOf]="studentList">
+      <h4>StudentId : {{ emp.id }}</h4>
+      <h4>StudentName : {{ emp.name }}</h4>
+      <h4>StudentAge : {{ emp.age + " years" }}</h4>
+    </ng-template>
+  </div>
+</div>

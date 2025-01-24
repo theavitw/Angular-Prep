@@ -41,6 +41,7 @@ import { PantsComponent } from './Products/pants/pants.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailsComponent } from './Products/product-details/product-details.component';
 import { ContactProejctionComponent } from './contact-proejction/contact-proejction.component';
+import { NgTemplateComponent } from './ng-template/ng-template.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ContactProejctionComponent } from './contact-proejction/contact-proejct
     ProductsComponent,
     ProductDetailsComponent,
     ContactProejctionComponent,
+    NgTemplateComponent,
   ],
   imports: [
     BrowserModule,
