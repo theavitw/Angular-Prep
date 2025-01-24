@@ -39,6 +39,8 @@ import { StudentsDynamicRoutingComponent } from './students-dynamic-routing/stud
 import { TShirtsComponent } from './Products/t-shirts/t-shirts.component';
 import { PantsComponent } from './Products/pants/pants.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductDetailsComponent } from './Products/product-details/product-details.component';
+import { ContactProejctionComponent } from './contact-proejction/contact-proejction.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { ProductsComponent } from './products/products.component';
     TShirtsComponent,
     PantsComponent,
     ProductsComponent,
+    ProductDetailsComponent,
+    ContactProejctionComponent,
   ],
   imports: [
     BrowserModule,
